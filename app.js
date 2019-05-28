@@ -1,5 +1,7 @@
+const fs = require('fs');
 const csv = require('csvtojson');
 const { Parser } = require('json2csv');
+
 const getRateCode = require('./utils/getRateCode.js');
 const getRates = require('./utils/getRates.js');
 
@@ -16,10 +18,15 @@ csv().fromFile('./data/plans.csv').then((plansData) => {
 
             //parse the JSON back into csv format
             const fields = ["zipcode", "rate"];
-            const parser = new Parser({ fields }).parse(combineRates);
+            let slcspCsv = new Parser({ fields }).parse(combineRates);
 
             //remove quotes from string and output - json2csv isn't behaving nicely.
-            console.log(parser.replace(/['"]+/g, ''));
+            slcspCsv = slcspCsv.replace(/['"]+/g, '');
+            fs.writeFile('output.csv', slcspCsv, (err) => {
+                if (err) throw err;
+                console.log("Results saved to output.csv")
+            })
+            
 
         }, (err) => {
             console.error("slcsp", err);
