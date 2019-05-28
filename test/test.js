@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-const getRateCode = require('../getRateCode');
-const getRates = require('../getRates');
+const getRateCode = require('../utils/getRateCode');
+const getRates = require('../utils/getRates');
 
 const item = { zipcode: '20047', rate: '' } 
 const zipsData = [
@@ -37,7 +37,7 @@ const plansData = [
         plan_id: '26631YR3384683',
         state: 'MO',
         metal_level: 'Silver',
-        rate: '322.22',
+        rate: '322.2',
         rate_area: '3'
     },
     { 
@@ -86,7 +86,7 @@ describe('getRates', () => {
     it('should return an object', () => {
         expect(getRates(plansData, itemCombined, zipsData)).to.be.a('object');
     });
-    it('should return the SCLSP', () => {
-        expect(getRates(plansData, itemCombined, zipsData).rate).to.equal('322.22');
+    it('should return the SCLSP with two digits after decimal', () => {
+        expect(getRates(plansData, itemCombined, zipsData).rate).to.equal('322.20');
     });
 });
