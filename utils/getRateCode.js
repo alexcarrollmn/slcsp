@@ -1,6 +1,6 @@
 module.exports = (item, zipsData) => {
-
-    //filter out non-relevant zip codes
+    //Grabs rate codes based on a provided list of zip codes.
+    //Example return: { zipcode: '20047', rate: '', rateCode: '3', state: 'MO' }
     const zipsList = zipsData.filter(zip => item.zipcode == zip.zipcode);
 
 

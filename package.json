@@ -1,7 +1,7 @@
 {
   "name": "slcsp",
   "version": "1.0.0",
-  "description": "## Problem",
+  "description": "Second Lowest Cost Silver Plan",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
