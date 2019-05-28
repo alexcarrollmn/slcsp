@@ -20,7 +20,7 @@ csv().fromFile('./data/plans.csv').then((plansData) => {
             const fields = ["zipcode", "rate"];
             let slcspCsv = new Parser({ fields }).parse(combineRates);
 
-            //remove quotes from string and output - json2csv isn't behaving nicely.
+            //remove quotes from string and output - json2csv isn't behaving nicely - and save to .csv.
             slcspCsv = slcspCsv.replace(/['"]+/g, '');
             fs.writeFile('output.csv', slcspCsv, (err) => {
                 if (err) throw err;
